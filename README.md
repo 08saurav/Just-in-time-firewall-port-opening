@@ -11,3 +11,6 @@ port, potentially over a (simulated) separate network (in real implementations, 
 some other random network) in order to prevent easy listening of the port opening
 announcement by third parties.
 
+client.py -simple code to send data to another ec2 instance(server)
+
+server.py - simple code to recieve data from client 
