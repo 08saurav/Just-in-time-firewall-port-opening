@@ -1,0 +1,10 @@
+#If ssh-agent is not automatically started at login, it can be started manually with the command
+eval `ssh-agent`
+#Adding SSH keys to the Agent
+ssh-add /path to the ssh public key
+ssh-add -l #to list all ssh agent
+#then connect to ec2 instance (client) using ssh
+
+#scp command to send file through ssh 
+scp /path of file ec2-user@private-ip 
+#bingo u sucessfully sended the file in a very secure way where no attacker can reach out to your you have sended 
