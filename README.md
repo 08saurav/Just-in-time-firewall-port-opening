@@ -21,9 +21,9 @@ server.py - simple code to recieve data from client
 this work done by us for checking firewall restrictions and firewall implementations 
 this firewall we made will accept through only ssh services and limit the parallel access and limit to sertain ip at the same time 
 
-# using this we can just stop any unauthorized ip to acess to our document 
+using this we can just stop any unauthorized ip to acess to our document 
 
-# we are using ssh i.e scp command for secure and encrypted transmission of data to our server in this data is send through the ssh port encrypted while when when it recieved by srver it automatically decrypted and save to server
+we are using ssh i.e scp command for secure and encrypted transmission of data to our server in this data is send through the ssh port encrypted while when when it recieved by srver it automatically decrypted and save to server
 
-# first i will create inbuilt agent for scp so it will use that agent to connect to ssh to server
-# In cloud i have mentioned all procedure of adding agent and send file to server
+first i will create inbuilt agent for scp so it will use that agent to connect to ssh to server
+In cloud i have mentioned all procedure of adding agent and send file to server
