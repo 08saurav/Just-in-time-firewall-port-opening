@@ -14,3 +14,8 @@ announcement by third parties.
 client.py -simple code to send data to another ec2 instance(server)
 
 server.py - simple code to recieve data from client 
+
+this work done by us for checking firewall restrictions and firewall implementations 
+this firewall we made will accept through only ssh services and limit the parallel access and limit to sertain ip at the same time 
+
+using this we can just stop any unauthorized ip to acess to our document 
