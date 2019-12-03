@@ -1,0 +1,29 @@
+# delete all rules and custom chains
+iptables -F
+iptables -X
+
+# drop incoming traffic by default
+iptables -P INPUT DROP
+
+# accept established connections
+iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+# SSH to init chain
+iptables -N ssh_init
+iptables -A INPUT -p tcp --dport 22 --syn -j ssh_init
+
+# SSH traffic init chain
+# maintains a list of IP addresses trying to establish SSH connections (--set).
+# Drops packets if IP tried it more than 3 times in last 60 seconds.
+# --rttl ensures we match both IP and TTL of the packets so that nobody can (too easily) spoof our IP and DoS us.
+iptables -A ssh_init -m recent --name ssh_ip_list --rcheck --seconds 60 --hitcount 3 --rttl -j DROP
+iptables -A ssh_init -m recent --name ssh_ip_list --set -j RETURN
+
+# SSH traffic to throttle ssh
+iptables -N ssh_throttle
+iptables -A INPUT -p tcp --dport 22 --syn -j ssh_throttle
+
+# SSH traffic throttle chain
+# ensures we can have an SSH connection only every 20 secs and max 3 at a time
+iptables -A ssh_throttle -m connlimit --connlimit-above 3 -j DROP
+iptables -A ssh_throttle -m limit --limit 3/m --limit-burst 1 -j ACCEPT
