@@ -18,6 +18,17 @@ iptables -A INPUT -p tcp --dport 22 --syn -j ssh_init
 # --rttl ensures we match both IP and TTL of the packets so that nobody can (too easily) spoof our IP and DoS us.
 iptables -A ssh_init -m recent --name ssh_ip_list --rcheck --seconds 60 --hitcount 3 --rttl -j DROP
 iptables -A ssh_init -m recent --name ssh_ip_list --set -j RETURN
+iptables -I INPUT -p tcp -s 10.1.1.2 --dport 22 -j ACCEPT
+
+#In that case, you are opening ssh port only to IP 10.1.1.2, if you need to open DNS for your internal network.
+
+iptables -I INPUT -p udp -s 10.1.0.0/16 --dport 53 -j ACCEPT
+
+#Once you have them added and opened for those IPs, you need to close the door for the rest of IPs
+
+iptables -I INPUT -p tcp -s 0.0.0.0/0 --dport 22 -j DROP
+iptables -I INPUT -p udp -s 0.0.0.0/0 --dport 53 -j DROP
+
 
 # SSH traffic to throttle ssh
 iptables -N ssh_throttle
