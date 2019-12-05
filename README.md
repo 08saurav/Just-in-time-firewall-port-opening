@@ -27,4 +27,4 @@ we are using ssh i.e scp command for secure and encrypted transmission of data t
 
 first i will create inbuilt agent for scp so it will use that agent to connect to ssh to server
 In cloud i have mentioned all procedure of adding agent and send file to server
-# work done by us is already shown to firdaus sir and all worked done according to him
+# work done by us is already shown to ferdaus sir and all worked done according to him
